@@ -114,6 +114,7 @@ check_osname() {
 
 
 pre_install() {
+        sudo curl -s https://packagecloud.io/install/repositories/varnishcache/varnish60/script.deb.sh | sudo bash
 	sudo apt-get -qq update
 	if [[ $(conf_read pre-packs) != true ]]; then
 		# Check for missing essential packages
@@ -121,6 +122,7 @@ pre_install() {
 		sudo apt-get -y -qq install python-software-properties
 		sudo apt-get -y -qq install pwgen
 		sudo apt-get -y -qq install unzip
+		sudo apt-get -y -qq install varnish
 		conf_write pre-packs true
 	fi
 }
